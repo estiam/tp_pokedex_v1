@@ -19,8 +19,18 @@ const PokemonView = () => {
         {({ selectedPokemon }) => {
           if (selectedPokemon == null)
             return <div>No Pokemon Selected</div>
-          else 
-            return <div>{selectedPokemon.name}</div>
+          else
+            return (
+              <div>
+                <div><img src={selectedPokemon.image} /></div>
+                <div>{selectedPokemon.name}</div>
+                <div>
+                  {selectedPokemon.types.map(type => (
+                    <div>{type.type.name}</div>
+                  ))}
+                </div>
+              </div>
+            )
         }}
       </PokemonContext.Consumer>
     </div>

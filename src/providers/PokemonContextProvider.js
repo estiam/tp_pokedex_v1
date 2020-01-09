@@ -22,7 +22,7 @@ const demoData = [
 
 const PokemonContextProvider = ({ children }) => {
   const [selectedPokemon, setSelectedPokemon] = useState();
-  const [history, setHistory] = useState(demoData);
+  const [history, setHistory] = useState([]);
 
   const selectPokemon = (pokemon) => {
     setSelectedPokemon(pokemon);
