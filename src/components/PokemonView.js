@@ -12,8 +12,8 @@ const cssStyle = {
   margin: '20px'
 }
 
-const cssTitleStyle ={
-  fontFamily : 'VT323',
+const cssTitleStyle = {
+  fontFamily: 'VT323',
   textTransform: 'capitalize',
   alignItems: 'center',
   fontSize: '36px',
@@ -21,6 +21,28 @@ const cssTitleStyle ={
 }
 
 const PokemonView = () => {
+  const addToCollection = (pokemon) => {
+    let types = "";
+
+    pokemon.types.forEach(type => types += type.type.name + ',');
+
+    fetch("http://localhost:8000/pokemons",
+      {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({
+          name: pokemon.name,
+          type: types,
+          captured: false,
+          image: pokemon.image,
+        }),
+      })
+      .then(data => alert("Pokemon created"))
+  }
+
   return (
     <div style={cssStyle}>
       <PokemonContext.Consumer>
@@ -30,9 +52,10 @@ const PokemonView = () => {
           else
             return (
               <div>
+                <button onClick={() => addToCollection(selectedPokemon)}>Add to my collection</button>
                 <div style={cssTitleStyle}>
-                  <div style={{ display: 'flex', flexDirection: 'column' }}><img style={{ maxWidth: '150px'}} src={selectedPokemon.image} /></div>
-                  <div style={{ display: 'flex', flexDirection: 'column'}}>{selectedPokemon.name}</div>
+                  <div style={{ display: 'flex', flexDirection: 'column' }}><img style={{ maxWidth: '150px' }} src={selectedPokemon.image} /></div>
+                  <div style={{ display: 'flex', flexDirection: 'column' }}>{selectedPokemon.name}</div>
                 </div>
                 <div>
                   <h3>Types : </h3>

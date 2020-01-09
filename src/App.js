@@ -1,23 +1,24 @@
 import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-import Sidebar from './components/Sidebar';
-import PokemonView from './components/PokemonView';
-import PokemonContextProvider from './providers/PokemonContextProvider';
+import Home from './components/Home';
+import Add from './components/Add';
+import Edit from './components/Edit';
+import MyCollection from './components/MyCollection';
 
-const cssStyle = {
-  display: 'flex',
-  height: '100%'
-}
+
 
 const App = () => {
   return (
-    <div style={cssStyle}>
-      <PokemonContextProvider>
-        <Sidebar />
-        <PokemonView />
-      </PokemonContextProvider>
-    </div>
+    <BrowserRouter>
+      <Route exact path='/' component={Home} />
+      <Route exact path='/Add' component={Add} />
+      <Route exact path='/Edit/:pokemonId' component={Edit} />
+      <Route exact path='/MyCollection' component={MyCollection} />
+      {/* <Route exact path='/View/:pokemonId' component={Home} />
+      <Route exact path='/Delete/:pokemonId' component={Home} /> */}
+    </BrowserRouter>
   );
 }
 
