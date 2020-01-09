@@ -25,15 +25,20 @@ const PokemonContextProvider = ({ children }) => {
   const [history, setHistory] = useState(demoData);
 
   const selectPokemon = (pokemon) => {
-    // TODO
+    setSelectedPokemon(pokemon);
 
-    // changer selectedPokemon par pokemon
+    let temp = [pokemon, ...history];
+
+    temp = temp.filter((element, index, self) =>
+      self.findIndex(t => t.name === element.name) === index);
+
+    setHistory(temp);
     // mettre à jour l'historique avec uniquement des valeurs uniques
   }
 
   return (
     <PokemonContext.Provider
-      value={{ selectedPokemon, history, selectPokemon}}
+      value={{ selectedPokemon, history, selectPokemon }}
     >
       {children}
     </PokemonContext.Provider>
