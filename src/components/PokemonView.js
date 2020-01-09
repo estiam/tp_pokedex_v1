@@ -12,6 +12,14 @@ const cssStyle = {
   margin: '20px'
 }
 
+const cssTitleStyle ={
+  fontFamily : 'VT323',
+  textTransform: 'capitalize',
+  alignItems: 'center',
+  fontSize: '36px',
+  display: 'flex'
+}
+
 const PokemonView = () => {
   return (
     <div style={cssStyle}>
@@ -22,12 +30,18 @@ const PokemonView = () => {
           else
             return (
               <div>
-                <div><img src={selectedPokemon.image} /></div>
-                <div>{selectedPokemon.name}</div>
+                <div style={cssTitleStyle}>
+                  <div style={{ display: 'flex', flexDirection: 'column' }}><img style={{ maxWidth: '150px'}} src={selectedPokemon.image} /></div>
+                  <div style={{ display: 'flex', flexDirection: 'column'}}>{selectedPokemon.name}</div>
+                </div>
                 <div>
+                  <h3>Types : </h3>
                   {selectedPokemon.types.map(type => (
-                    <div>{type.type.name}</div>
+                    <span style={{ backgroundColor: "#CCC", borderRadius: '15px', padding: '5px 10px 5px 5px' }}>{type.type.name}</span>
                   ))}
+                </div>
+                <div>
+                  <audio src={`https://raw.githubusercontent.com/lancelafontaine/PokemonCries/gh-pages/audio/${selectedPokemon.id}.mp3`} autoPlay />
                 </div>
               </div>
             )

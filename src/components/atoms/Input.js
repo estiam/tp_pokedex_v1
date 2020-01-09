@@ -9,6 +9,7 @@ const Input = () => {
       .then(response => response.json())
       .then(data => {
         selectPokemon({
+          id: data.id,
           name: data.name,
           image: data.sprites.front_default,
           types: data.types,
