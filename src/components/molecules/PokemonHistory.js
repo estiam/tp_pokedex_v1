@@ -1,40 +1,20 @@
 import React from 'react'
 import PokemonListItem from '../atoms/PokemonListItem';
+import PokemonContext from '../../providers/PokemonContext';
 
-const demoData = [
-  {
-    name: "Pikachu",
-    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
-  },
-  {
-    name: "Pikachu",
-    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
-  },
-  {
-    name: "Pikachu",
-    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
-  },
-  {
-    name: "Pikachu",
-    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
-  },
-  {
-    name: "Pikachu",
-    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
-  },
-  {
-    name: "Pikachu",
-    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
-  },
-]
+
 
 const PokemonHistory = () => {
   return (
     <div style={{overflowY: 'scroll'}}>
       <h3>History</h3>
-      {demoData.map(pokemon => {
-        return <PokemonListItem pokemon={pokemon} />
-      })}
+      <PokemonContext.Consumer>
+        {({ history }) => {
+          return history.map((pokemon, index) => {
+            return <PokemonListItem key={'histpoke_' + index} pokemon={pokemon} />
+          })
+        }}
+      </PokemonContext.Consumer>
     </div>
   );
 }

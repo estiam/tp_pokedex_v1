@@ -1,4 +1,5 @@
 import React from 'react'
+import PokemonContext from '../../providers/PokemonContext'
 
 const cssStyle = {
   display: 'flex',
@@ -11,8 +12,14 @@ const cssStyle = {
 const PokemonListItem = ({ pokemon }) => {
   return (
     <div style={cssStyle}>
-      <div><img src={pokemon.image} alt={pokemon.name} /></div>
-      <div><h4>{pokemon.name}</h4></div>
+      <PokemonContext.Consumer>
+        {({ selectPokemon }) => {
+          <div onClick={() => selectPokemon(pokemon)}>
+            <div><img src={pokemon.image} alt={pokemon.name} /></div>
+            <div><h4>{pokemon.name}</h4></div>
+          </div>
+        }}
+      </PokemonContext.Consumer>
     </div>
   );
 }

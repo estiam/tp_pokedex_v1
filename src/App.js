@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Sidebar from './components/Sidebar';
 import PokemonView from './components/PokemonView';
+import PokemonContextProvider from './providers/PokemonContextProvider';
 
 const cssStyle = {
   display: 'flex',
@@ -12,8 +13,10 @@ const cssStyle = {
 const App = () => {
   return (
     <div style={cssStyle}>
-      <Sidebar />
-      <PokemonView />
+      <PokemonContextProvider>
+        <Sidebar />
+        <PokemonView />
+      </PokemonContextProvider>
     </div>
   );
 }

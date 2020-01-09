@@ -1,4 +1,5 @@
 import React from 'react'
+import PokemonContext from '../providers/PokemonContext';
 
 const cssStyle = {
   display: 'flex',
@@ -13,7 +14,16 @@ const cssStyle = {
 
 const PokemonView = () => {
   return (
-    <div style={cssStyle}> //TODO</div>
+    <div style={cssStyle}>
+      <PokemonContext.Consumer>
+        {({ selectedPokemon }) => {
+          if (selectedPokemon == null)
+            return <div>No Pokemon Selected</div>
+          else 
+            return <div>{selectedPokemon.name}</div>
+        }}
+      </PokemonContext.Consumer>
+    </div>
   );
 }
 
