@@ -14,10 +14,12 @@ const PokemonListItem = ({ pokemon }) => {
     <div style={cssStyle}>
       <PokemonContext.Consumer>
         {({ selectPokemon }) => {
-          <div onClick={() => selectPokemon(pokemon)}>
-            <div><img src={pokemon.image} alt={pokemon.name} /></div>
-            <div><h4>{pokemon.name}</h4></div>
-          </div>
+          return (
+            <div onClick={() => selectPokemon(pokemon)}>
+              <div><img src={pokemon.image} alt={pokemon.name} /></div>
+              <div><h4>{pokemon.name}</h4></div>
+            </div>
+          );
         }}
       </PokemonContext.Consumer>
     </div>
